@@ -1,0 +1,25 @@
+language: node_js
+node_js: stable
+sudo: false
+addons:
+  firefox: latest
+  sauce_connect: true
+  apt:
+    sources:
+    - google-chrome
+    packages:
+    - google-chrome-stable
+before_script:
+- npm install web-component-tester
+- npm install bower
+- export PATH=$PWD/node_modules/.bin:$PATH
+- bower install paper-icon-button
+- bower install
+script:
+- xvfb-run wct --skip-plugin sauce
+- if [ "${TRAVIS_PULL_REQUEST}" = "false" ]; then wct --skip-plugin local; fi
+env:
+  global:
+    secure: pstAcoa/CcCnsk6IyC8Sxvjdupd5K9CcDybmmouWi/7ezpKPt/OTaDMGJeoOjhWY4sJH1L8CJwwjMiyVjPEo+rOX5pnYSMxF9g6Xhs6HfkyAAWB5nQ6pbRjowhhY1lA47Ih4snhc6sYa88A2nFmDzj5ZogSKfK83VkXj2yDqXqRkKA7RK9f6rX8ydIOuPCLrHBSogDasiDVv3zUQiOURU1hudnz7HWabKZdo8z9wpOyYf2A+PFeT5DyLJFAOu67EO7u7v0PUC8o0TmPOwcBZa2hWQqKMCUsMhprlBasfbf1e/Yoi/Rk95UCa96AJszObeRBCd+znVzMG1H6nV1F+98LRDKRMC0IRysltnRbVzlWyozETDTSjIt6CzNfWryENYVFGps9oheVXEIo8sAm6xHWgbfBU7UqxWuOnJyYt0Er32rnwkjCIdyG7Kfh1e/eecysGOKHsfjL0CfkaQNR99E9/TI2Sudp2hIORvSRmhcQurUfwO3vKvbyy08D4ID2iaqxoW9xUU/eshhM0b+RkQA8SkKVXu0sJ3YQTEn5SGrHlBXpOemIIqtLGBrOPKcHGDirA8hnCnQ1QZ7iQ3v/6+mM7wcgh6rQ6nT1Zfe3kCWs7RSg2plKmFJyQDBQcXaTdn03O7HOeIVz9IyQAq9KyXIZ+PDzw+ZHcc6H3kv3/dbY=
+dd:
+  secure: RpisVxgTUt6FlaEc/yHGM+eCUcTQd3PA6fPBowDmc6jaLbzDnzUKgR9BvrQSDqDy1OIdTnCyHESFNIy+28Yb/cfKGKPe1V4HIAfr1JP8H0kG4QaBo80roFspCOxa8XuooZmuTPjdj4zzbBkLSbxSZPV0XsMH0uqr1zpssY81MkMzDI7Cq9YSc+nnoH7mOiBIx8kuR/8bL+wJlDoCNQEI5Ul2hKH3WBFI3xy8CwYoDJVnvTUODSqAi4E8Y6EI9QbyG0ydjjHRLbV7qBGT5aiMVZ4WxRPBhM+rwOHqig5c9DhkIvGA5vnIieTiwNVpCHLHDVR4I6+oPoPuK+M/1jCZ/qgPOKGuyJsbZmOoD9CKMRj3VztCGrla6vA5emUMBWMGhywqws9ye91qVMsir+U7qGGRFTvfmkBdEVsAOOWN5E+LvOM42+kJhWx4p9msxfMlI+Ft8dTo8J88P5CdyxOZuCvzWaky13OP9gyxRWX97UPGtwrsTWTl3D4o0OLvNQ7BlTUuqU0Md+t4aYJ8hXOitRo3D3qVNhlAriGFk4APLEMRHBm8Q+XmRq8QVUMF3fOefuD65qzZ5SqgscdVLwz1gw9puO1SCQ7yAHdRBJQn3MFTtH2zhCpjUG3rvMvEzQPHqsr5MF060bQ/y7vbrD9Ik9OtsTlS3XQSDWwtMSVmtCo=
