@@ -15,7 +15,7 @@ before_script:
 - bower install iron-icon#v1.0.10
 - bower install
 - bower install paper-icon-button
-- polylint
+- export DISPLAY=:99.0
 script:
 - xvfb-run wct
 - if [ "${TRAVIS_PULL_REQUEST}" = "false" ]; then wct -s 'default'; fi
