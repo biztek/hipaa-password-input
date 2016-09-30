@@ -1,0 +1,166 @@
+<!doctype html>
+
+<html>
+
+<head>
+    <title>hipaa-password-input test</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes">
+    <script src="../bower_components/webcomponentsjs/webcomponents-lite.js"></script>
+    <script src="../bower_components/web-component-tester/browser.js"></script>
+    <script src="../bower_components/iron-test-helpers/test-helpers.js"></script>
+    <script src="../bower_components/iron-test-helpers/mock-interactions.js"></script>
+
+    <link rel="import" href="../hipaa-password-input.html">
+</head>
+
+<body>
+
+    <test-fixture id="basic">
+        <template>
+            <hipaa-password-input></hipaa-password-input>
+        </template>
+    </test-fixture>
+    <test-fixture id="visible">
+        <template>
+            <hipaa-password-input visible></hipaa-password-input>
+        </template>
+    </test-fixture>
+
+    <test-fixture id="label">
+        <template>
+            <hipaa-password-input label="Password"></<hipaa-password-input>
+        </template>
+    </test-fixture>
+
+    <test-fixture id="error">
+        <template>
+            <hipaa-password-input auto-validate value="1234" error-message="error message"></hipaa-password-input>
+        </template>
+    </test-fixture>
+
+    <test-fixture id="required-no-auto-validate">
+        <template>
+            <hipaa-password-input required error-message="error message"></hipaa-password-input>
+        </template>
+    </test-fixture>
+    <test-fixture id="required">
+        <template>
+            <hipaa-password-input auto-validate required error-message="error"></hipaa-password-input>
+        </template>
+    </test-fixture>
+
+    <test-fixture id="show-password">
+        <template>
+            <hipaa-password-input value="Show Password"></hipaa-password-input>
+        </template>
+    </test-fixture>
+
+    <test-fixture id="pattern-validator">
+        <template>
+            <hipaa-password-input value="sriCer@234" pattern="^(?=.*\d)(?=.*[~!@#$%^*&;?.+_])(?=.*[a-z])(?=.*[A-Z]).{8,}$">
+            </hipaa-password-input>
+        </template>
+    </test-fixture>
+
+    <script>
+        suite('hipaa-password-input', function() {
+            var basic;
+            var visible;
+
+            setup(function() {
+                basic = fixture('basic');
+                visible = fixture('visible');
+            });
+
+            test('instantiating the element works', function() {
+                var element = fixture('basic');
+                assert.equal(element.is, 'hipaa-password-input');
+            });
+
+            test('can validate using a complex regex', function() {
+                var input = fixture('pattern-validator');
+                input.value = '####@##!';
+                input.validate();
+                assert.isTrue(input.invalid, 'input is invalid');
+                input.value = 'Password345';
+                input.validate();
+                assert.isTrue(input.invalid, 'input is invalid');
+                input.value = 'password@!';
+                input.validate();
+                assert.isTrue(input.invalid, 'input is invalid');
+                input.value = 'passdS345#$%^6';
+                input.validate();
+                assert.isFalse(input.invalid, 'input is valid');
+            });
+
+            test('reveal/hide password on show password icon click', function() {
+                var input = fixture('show-password');
+                forceXIfStamp(input);
+
+                var showPasswordIcon = Polymer.dom(input.root).querySelector('paper-icon-button');
+                assert.equal(input.type, 'password', 'Before show password click, type equals password');
+
+                showPasswordIcon.click();
+                assert.equal(input.type, 'text', 'clicking on show password icon iconchanges type to text');
+                assert.equal(showPasswordIcon.icon, 'visibility', 'After show password click, show password icon equals visibility');
+
+                showPasswordIcon.click();
+                assert.equal(input.type, 'password', 'clicking on show password icon again changes type to password');
+                assert.equal(showPasswordIcon.icon, 'visibility-off', 'clicking on show password icon again changes show password icon to visibility-off');
+            });
+
+            suite('validation', function() {
+                test('invalid attribute updated after calling validate()', function() {
+                    var input = fixture('required-no-auto-validate');
+                    forceXIfStamp(input);
+                    input.validate();
+                    var error = Polymer.dom(input.root).querySelector('paper-input-error');
+                    assert.ok(error, 'paper-input-error exists');
+                    assert.notEqual(getComputedStyle(error).display, 'none', 'error is not display:none');
+                    assert.isTrue(input.invalid, 'invalid is true');
+                });
+            });
+
+            test('invalid attribute updated after calling validate()', function() {
+                var input = fixture('required-no-auto-validate');
+                forceXIfStamp(input);
+                input.validate();
+                var error = Polymer.dom(input.root).querySelector('paper-input-error');
+                assert.ok(error, 'paper-input-error exists');
+                assert.notEqual(getComputedStyle(error).display, 'none', 'error is not display:none');
+                assert.isTrue(input.invalid, 'invalid is true');
+            });
+
+            test('default properties', function() {
+                assert(!basic.visible);
+            });
+
+            test('error message is displayed', function() {
+                var input = fixture('error');
+                forceXIfStamp(input);
+                var error = Polymer.dom(input.root).querySelector('paper-input-error');
+                assert.ok(error, 'paper-input-error exists');
+                assert.notEqual(getComputedStyle(error).display, 'none', 'error is not display:none');
+            });
+
+            test('empty required input shows error', function() {
+                var input = fixture('required');
+                forceXIfStamp(input);
+                var error = Polymer.dom(input.root).querySelector('paper-input-error');
+                assert.ok(error, 'paper-input-error exists');
+                assert.notEqual(getComputedStyle(error).display, 'none', 'error is not display:none');
+            });
+
+            test('defines the "errorMessage" property', function() {
+                assert.equal(basic.errorMessage, 'Password should have at least 8 characters with at least one number, one lowercase, one uppercase letter, one special char(~!@#$%^*&;?.+_)');
+            });
+
+            test('defines the "password" property', function() {
+                assert.equal(basic.value, '');
+            });
+        });
+    </script>
+</body>
+
+</html>
