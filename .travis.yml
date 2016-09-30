@@ -19,8 +19,7 @@ before_script:
 - export DISPLAY=:99.0
 script:
 - xvfb-run wct --skip-plugin sauce
-- if [ "${TRAVIS_PULL_REQUEST}" = "false" ]; then wct --plugin sauce --skip-plugin
-  local; fi
+- if [ "${TRAVIS_PULL_REQUEST}" = "false" ]; then wct --plugin sauce --skip-plugin local; fi
 env:
   global:
   - secure: fN2adntLL31ymXw+1JAsfQdU00oHpcqLRlJxL7Tk3KR2a5HlqSWpdjDEsz9Rsu9dvHYo/lppSfu81FVli7dEcpGkX4MRZiLeOwhKC7qDNBV2ahnKm7q0frOb3kAErlriMI0etRW8WN/fNLhlcC8naR7RU8t4mrt/RpEO18uDHoxJIaGHMwIX/5nm6xeFnrwwxUiJr7zGE71lnwE9lQW54hUVgqIhxNfczz0uIW/3zGazEWXwcFo9PF23yaz4zOi1051hic5rrxd/gL1sdMX88hLCLZ8BtvRTzcLWYmRBbwc4m1R/Jfp7XbzRKtxt3/PUc6mKaHPkj9Ygj+wu0lEPZ3aV6Drz+kvGrHU/kHwzhNz5BqLBAF1gWkycWF/uqTBcAFmMuGwO4J5uxpeia7D6NCifOsuQaMOFQeVeJKKSfvaTN3NoLAym/8oGoK2BlNN15UkSyiO4lMg098ghOemGDKNjn5sNdgwndFbePUYpxJwiVBWogueIopMs0t5v2wNomjcQHUjJEPwwqOuqy1udsqvrsYcRwqqemo8M0Re4N9hz/Yv4o7ZY2DY/+robrXR0l7F6aX8YmQKyM52Vz1ony/zAQcA/wDA/tNqCwiWf1MLaBV9izFY/ePXa9vk/3ePY1Hhyd1gY6cxB16qgs4x91dQV+fUzHPbCJqCWQqe8juM=
