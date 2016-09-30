@@ -12,12 +12,14 @@ addons:
     - google-chrome-stable
 before_script:
 - npm install web-component-tester
-- bower install
+- npm install bower
+- export PATH=$PWD/node_modules/.bin:$PATH
 - bower install paper-icon-button
+- bower install
 - export DISPLAY=:99.0
 script:
-- xvfb-run wct
-- if [ "${TRAVIS_PULL_REQUEST}" = "false" ]; then wct -s 'default'; fi
+- xvfb-run wct --skip-plugin sauce
+- if [ "${TRAVIS_PULL_REQUEST}" = "false" ]; then wct --plugin sauce --skip-plugin local; fi
 env:
   global:
   - secure: 146TBWIvSoGC4ti2x5rkalB9gM7OGPvx+dqCv0p/ypSwqpusTZpjJO8jlLqrZk+w1PSvm56Rh6wZ+c2N1N+xuWoPxWqy8FQlqM42zpS+dj11rszhyumT+uXQU4ywSU8ac4mvh/evRTWP0KvvB6a+6536vSRBWQsunxfH21jZUYLF3aHZHV7Lid4GxiehKY2Chv7s2Agww+j2QTBPIdnWR+xVTnNJ7jWkPG91VumgwQ/eU6+/ZF35nEl6ISiJdAUxKGYSAofXhmQ6H8Fbplz74zOUWE+BjU+exiQdLrp/6+eCazz27QG5thGy0NKHJpfmSKN+L3cfhrVbNM9KxHHCaL+YubhzBXtfYEtmzBK1JQmNI7nppYpL2eM0dTPbHHauso2a8tnG0jE2m6Iuo0LYyHWjOCJoLvd86x+/e5tKLA5cQAAG7scBTpQfN0DGwEDmB+U/P1gebYb9rQSaJ60F4hetkutZZQdhzS1M6Dr8nz+W/1ftBd0HFElvMBQx55MwwSg7s0e3bWrhzRNSXVUsDNm8XuqeFe5rquM8+3HIvxIXcvc31SOuIWCzzx5T6hwoXHC7fx5X0hOzyiM1cwTrgKuRt+4777qCjoQ9coqu6CEspY6aUXHw1s3Up3p6lHbJw9C5sQ5aWIykUNE6/EHHVUBWB8wyEDSx9ocvkKQSVqw=
