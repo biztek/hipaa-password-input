@@ -12,7 +12,6 @@ addons:
     - google-chrome-stable
 before_script:
 - npm install web-component-tester
-- bower install iron-icon#v1.0.10
 - bower install
 - bower install paper-icon-button
 - export DISPLAY=:99.0
