@@ -1,6 +1,6 @@
-[![Build Status](https://travis-ci.org/sricharan123/hipaa-password-input.svg?branch=master)](https://travis-ci.org/sricharan123/hipaa-password-input)
+[![Build Status](https://travis-ci.org/biztek/hipaa-password-input.svg?branch=master)](https://travis-ci.org/biztek/hipaa-password-input)
 
-_[Demo and API Docs](https://sricharan123.github.io/hipaa-password-input/components/hipaa-password-input/)_
+_[Demo and API Docs](https://biztek.github.io/hipaa-password-input/components/hipaa-password-input/)_
 
 
 ##&lt;hipaa-password-input&gt;
