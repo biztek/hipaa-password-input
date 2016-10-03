@@ -27,12 +27,6 @@
         </template>
     </test-fixture>
 
-    <test-fixture id="label">
-        <template>
-            <hipaa-password-input label="Password"></<hipaa-password-input>
-        </template>
-    </test-fixture>
-
     <test-fixture id="error">
         <template>
             <hipaa-password-input auto-validate value="1234" error-message="error message"></hipaa-password-input>
@@ -145,6 +139,7 @@
                 forceXIfStamp(input);
                 var showPasswordIcon = Polymer.dom(input.root).querySelector('paper-icon-button');
                 assert.equal(input.type, 'password', 'Before show password click, type equals password');
+            });
             });
 
         suite('password icon test when clicks', function() {
