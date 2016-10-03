@@ -4,7 +4,9 @@ dist: trusty
 sudo: required
 addons:
   firefox: latest
-  sauce_connect: true
+  sauce_connect:
+    username: "sricharanBiztek"
+    access_key: "d1b09f87-c78b-4b54-8097-202bb3b18c52"
   apt:
     sources:
     - google-chrome
