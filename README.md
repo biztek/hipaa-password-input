@@ -7,12 +7,23 @@ _[Demo and API Docs](https://biztek.github.io/hipaa-password-input/components/hi
 
 `<hipaa-password-input>` is an input element with Material Design that allows password with HIPAA security regulation standards functionality.
 
+# \<hipaa-password-input\>
+
+The password will match HIPAA security regulation standards.
+
+<hipaa-password-input> is a single-line text field with Material Design styling for entering a password.
+
+It may include an optional label, which by default is "Password". It includes a suffix to be able to show the plain text password with a toggle icon.
+
+<hipaa-password-input auto-validate></hipaa-password-input>
+The input can be automatically validated as the user is typing by using the auto-validate and required attributes. 
+
 ## Install
 
 Install the component using [Bower](http://bower.io/):
 
 ```sh
-$ bower install — save sricharan123/hipaa-password-input
+$ bower install — save biztek/hipaa-password-input
 ```
 
 ## Usage
