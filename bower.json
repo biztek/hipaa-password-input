@@ -21,7 +21,7 @@
     "homepage": "https://github.com/sricharan123/hipaa-password-input",
     "ignore": [],
     "dependencies": {
-        "polymer": "Polymer/polymer#^1.4.0",
+        "polymer": "polymer/polymer#^1.7.0",
         "paper-input": "PolymerElements/paper-input#^1.0.0",
         "iron-a11y-keys-behavior": "PolymerElements/iron-a11y-keys-behavior#~1.1.1",
         "iron-icon": "PolymerElements/iron-icon#^1.0.11",
