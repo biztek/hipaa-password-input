@@ -2,6 +2,11 @@ language: node_js
 node_js: stable
 dist: trusty
 sudo: required
+before_script:
+- npm install -g bower polylint web-component-tester eslint eslint-plugin-html
+- bower install
+- polylint --no-recursion
+- eslint *.html
 addons:
   firefox: latest
   apt:
@@ -9,10 +14,6 @@ addons:
     - google-chrome
     packages:
     - google-chrome-stable
-before_script:
-- npm install web-component-tester
-- npm install bower
-- bower install
 script:
 - xvfb-run wct --skip-plugin sauce
 - if [ "${TRAVIS_PULL_REQUEST}" = "false" ]; then wct --plugin sauce --skip-plugin
