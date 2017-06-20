@@ -8,6 +8,7 @@ before_script:
 - polylint --no-recursion
 - eslint *.html
 addons:
+  sauce_connect: true
   firefox: latest
   apt:
     sources:
@@ -18,7 +19,3 @@ script:
 - xvfb-run wct --skip-plugin sauce
 - if [ "${TRAVIS_PULL_REQUEST}" = "false" ]; then wct --plugin sauce --skip-plugin
   local; fi
-env:
-  global:
-  - secure: rMaZ4Q9D6NUE4KX5kEAA3E1TIMKkUXsUM4UQJllQdSKBcmC0VDZ6l6PDQupZkJAF2nRiEIaA8P8zfUrpmiduSKVfbPXtCzDMKJpZ6Pjrghh7EMXEEgMGaUNAOj1O85tiYew2CK/vsvkjFeNquIJeqFpG9oSVn004G8ZihxGysgk3I59WC8CmCGVw4HU1wCDgUC84o/eydq8uyNBPSMwlMqVjhwbxQrzzlQUIZPkTM9Ka7zC9Mx/TJWCOwBmAyFLtP+Bqs2h0B8xzuGDTgXDDfwzv49ohhxOgsAjw3RaVT1CGICGGsU5xK2Y7PYXOpDK9ZsleCD93wLF5BQUISWXnB2QSuCXnYqH2jME8b4jeaYXbmU6XcZoYOBQOUt6WM6qF1pNdbxe37573nXNO0xaSJGJ+beVOpCCKXZwFUxkx+bXmiF1lwu0+sdi++7Fnd8TVGoMPZU4KpUISjTACC+qXZHsxc0Sr4MEqH9f1wRNMyzbTgdcrSx3XX9PbnlbwNj00lNx+98hls/ONMcs676ejR6q3lPSpeCxEAtSN3CAIHrOqa3juFnMIP1A/mjQjygcfTJ48ZnuO3DhxIOMU3mju5FkTMICdqdrjPesSWrC15N6n+9Y0vZOSDk/YVVaKjARnUzjWUIV8gbUiLTeon+k74QUwqxW8LNAPqUD26b6YG8A=
-  - secure: v2x4eN1bzY6gm7rmz0ln+Wd7liad2YbEsvuErengsZrfNPGx2b3Zks9vBScPYJP/yAbYy9SFMvGyAF+m0sFqymeE/7MeHnBIWUzg0lZz4gHB1BF8tPV7gZRkyYemDaMMrUWDGqDXesqCY3T06ln8w5eYgz9afzLK7fAUXO1BaLPTb4p4H9gYZj0XN5ASNUZOVjDpJTlsIHtmmTjASKBsVc90FK0Ybn+GT3ZxSBnHEWkEYFRorlfOF3kbG54lGcyEIuJs6BxJ2BrcYRSy17X+D3qmim87pku4dSPP4okHdHKaH9eaLmLIAZDDaOOZHm5uBszk7PpLFztWcMBd+KJ7nqYKur4qxvtSnhnzgswr8YJHjAJTg1CJFYRu+Hwp0pom9AbtUH8cGa08WlBpQQBACq0mBLmKmBGbqmt7VrpBWBiqh/uHXDwpkzNhhCmH4LW7eOakgFS1zMYQ0AVZ+40wt3C2F7N9yDHc40GGlsfUIeMJcbq6sCtCXyRKi2zdcUDfRoY5CZyhVmeQTOejNEfreYunoUGS2Jn8NecK89Jf0FD/EnNu+owxHcdE+WjzeJSpC1QgJw5Nye/a/XwLpmdL3XrjlfQPo0SBDAjM0/o10Def7+nEkTLRk+P60YS6tgGitFzPNyMstPYavdCD6ISWHkfpo2Wm0llx/PkRY+W/lXo=
