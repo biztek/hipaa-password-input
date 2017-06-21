@@ -1,5 +1,7 @@
 [![Build Status](https://travis-ci.org/biztek/hipaa-password-input.svg?branch=master)](https://travis-ci.org/biztek/hipaa-password-input)
 
+[![Published on webcomponents.org](https://img.shields.io/badge/webcomponents.org-published-blue.svg)](https://www.webcomponents.org/element/biztek/hipaa-password-input)
+
 _[Demo and API Docs](https://biztek.github.io/hipaa-password-input/components/hipaa-password-input/)_
 
 
@@ -45,5 +47,9 @@ And then use it:
 1. Fork it!
 2. Create your feature branch: `git checkout -b hipaa-password-input`
 3. Commit your changes: `git commit -m 'Add some feature'`
-4. Push to the branch: `git push origin hipaa-password-input`
-5. Submit a pull request :D
+4. Push to the branch: `git push -u origin hipaa-password-input`
+5. Submit a pull request
+
+## License
+
+Licensed under [Apache 2.0](LICENSE).
