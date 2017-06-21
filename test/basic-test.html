@@ -82,16 +82,13 @@
                 assert.isTrue(input.invalid, 'invalid is true');
             });
 
-            test('default properties', function() {
-                assert(!basic.visible);
-            });
-
             test('error message is displayed', function() {
                 var input = fixture('error');
                 forceXIfStamp(input);
                 var error = Polymer.dom(input.root).querySelector('paper-input-error');
                 assert.ok(error, 'paper-input-error exists');
                 assert.notEqual(getComputedStyle(error).display, 'none', 'error is not display:none');
+                assert.equal(input.errorMessage, 'error message');
             });
 
             test('empty required input shows error', function() {
@@ -112,7 +109,7 @@
         });
 
         suite('validate the password', function() {
-            test('sets invalid to False if password is valid', function() {
+            test('sets invalid to false if password is valid', function() {
                 var input = fixture('pattern-validator');
                 input.value = 'passdS345#$%^6';
                 input.validate();
@@ -133,41 +130,41 @@
 
         });
 
-        suite('password input field to test', function() {
-            test('show type default password **** for first time', function() {
+        suite('password input field', function() {
+            test('should set default input type to password', function() {
+                var input = fixture('show-password');
+                forceXIfStamp(input);
+                assert.equal(input.type, 'password', 'input type should be password');
+            });
+        });
+
+        suite('toggle password visibility icon', function() {
+
+            test('unmask the password when toggle icon is on', function() {
                 var input = fixture('show-password');
                 forceXIfStamp(input);
                 var showPasswordIcon = Polymer.dom(input.root).querySelector('paper-icon-button');
-                assert.equal(input.type, 'password', 'Before show password click, type equals password');
-            });
+                assert.equal(input.type, 'password', 'password is starred');
+                assert.equal(showPasswordIcon.icon, 'hipaa-password-icons:visibility-off', 'visibility icon should be set to off');
+                showPasswordIcon.click();
+                assert.equal(input.type, 'text', 'password is visible');
+                assert.equal(showPasswordIcon.icon, 'hipaa-password-icons:visibility', 'visibility icon should be set to on');
             });
 
-        suite('password icon test when clicks', function() {
-
-            test('show the text if visibility icon is click', function() {
+            test('mask the password when toggle icon is off', function() {
                 var input = fixture('show-password');
                 forceXIfStamp(input);
                 var showPasswordIcon = Polymer.dom(input.root).querySelector('paper-icon-button');
-                showPasswordIcon.click();
-                assert.equal(input.type, 'text', 'clicking on show password icon iconchanges type to text');
-                assert.equal(showPasswordIcon.icon, 'visibility', 'After show password click, show password icon equals visibility');
-
-            });
-
-            test('hide the text if visibility-off icon is click', function() {
-                var input = fixture('show-password');
-                forceXIfStamp(input);
-                var showPasswordIcon = Polymer.dom(input.root).querySelector('paper-icon-button');
+                assert.equal(input.type, 'password', 'password is hidden');
+                assert.equal(showPasswordIcon.icon, 'hipaa-password-icons:visibility-off', 'visibility icon should be set to off');              
                 showPasswordIcon.click();
                 showPasswordIcon.click();
-                assert.equal(input.type, 'password', 'clicking on show password icon iconchanges type to password');
-                assert.equal(showPasswordIcon.icon, 'visibility-off', 'After show password click, show password icon equals visibility-off');
-
+                assert.equal(input.type, 'password', 'password is hidden');
+                assert.equal(showPasswordIcon.icon, 'hipaa-password-icons:visibility-off', 'visibility icon should be set to off');
             });
         });
 
         suite('validation', function() {
-
             test('invalid attribute updated after calling validate()', function() {
                 var input = fixture('required-no-auto-validate');
                 forceXIfStamp(input);
