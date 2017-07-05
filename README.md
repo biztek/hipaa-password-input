@@ -9,7 +9,7 @@
 _[Demo and API Docs](https://biztek.github.io/hipaa-password-input/components/hipaa-password-input/)_
 
 
-##&lt;hipaa-password-input&gt;
+## hipaa-password-input
 
 `<hipaa-password-input>` is an input element with Material Design that allows password with HIPAA security regulation standards functionality.
 
