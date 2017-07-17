@@ -138,32 +138,6 @@
             });
         });
 
-        suite('toggle password visibility icon', function() {
-
-            test('unmask the password when toggle icon is on', function() {
-                var input = fixture('show-password');
-                forceXIfStamp(input);
-                var showPasswordIcon = Polymer.dom(input.root).querySelector('paper-icon-button');
-                assert.equal(input.type, 'password', 'password is starred');
-                assert.equal(showPasswordIcon.icon, 'hipaa-password-icons:visibility-off', 'visibility icon should be set to off');
-                showPasswordIcon.click();
-                assert.equal(input.type, 'text', 'password is visible');
-                assert.equal(showPasswordIcon.icon, 'hipaa-password-icons:visibility', 'visibility icon should be set to on');
-            });
-
-            test('mask the password when toggle icon is off', function() {
-                var input = fixture('show-password');
-                forceXIfStamp(input);
-                var showPasswordIcon = Polymer.dom(input.root).querySelector('paper-icon-button');
-                assert.equal(input.type, 'password', 'password is hidden');
-                assert.equal(showPasswordIcon.icon, 'hipaa-password-icons:visibility-off', 'visibility icon should be set to off');              
-                showPasswordIcon.click();
-                showPasswordIcon.click();
-                assert.equal(input.type, 'password', 'password is hidden');
-                assert.equal(showPasswordIcon.icon, 'hipaa-password-icons:visibility-off', 'visibility icon should be set to off');
-            });
-        });
-
         suite('validation', function() {
             test('invalid attribute updated after calling validate()', function() {
                 var input = fixture('required-no-auto-validate');
